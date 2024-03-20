@@ -1,9 +1,10 @@
-/** @type {import('next').NextConfig} */
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
+import bundleAnalyzer from '@next/bundle-analyzer';
+
+const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
 });
 
-const nextConfig = {
+export default withBundleAnalyzer({
   reactStrictMode: false,
   eslint: {
     ignoreDuringBuilds: true,
@@ -11,5 +12,4 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ['@mantine/core', '@mantine/hooks'],
   },
-};
-module.exports = withBundleAnalyzer(nextConfig);
+});
