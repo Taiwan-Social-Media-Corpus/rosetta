@@ -1,8 +1,11 @@
-import { createTheme, DEFAULT_THEME } from '@mantine/core';
+'use client';
+
+import { createTheme, DEFAULT_THEME, virtualColor } from '@mantine/core';
 
 const theme = createTheme({
   fontFamilyMonospace: `Menlo, Monaco, ${DEFAULT_THEME.fontFamilyMonospace}`,
   colors: {
+    virtual: virtualColor({ name: 'virtual', dark: 'pink', light: 'cyan' }),
     'ocean-blue': [
       '#7AD1DD',
       '#5FCCDB',
