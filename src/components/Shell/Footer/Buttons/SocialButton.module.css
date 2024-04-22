@@ -1,0 +1,38 @@
+.socialButton {
+  border: 0;
+  height: rem(42px);
+  padding-left: rem(20px);
+  padding-right: rem(20px);
+}
+
+.socialButtonSection {
+  &[data-position='left'] {
+    margin-right: var(--mantine-spacing-md);
+  }
+}
+
+.facebookButton {
+  [data-mantine-color-scheme] & {
+    background-color: $facebook-color;
+    border-color: $facebook-color;
+    color: var(--mantine-color-white);
+
+    @mixin hover {
+      background-color: $facebook-color-hover;
+      border-color: $facebook-color-hover;
+    }
+  }
+}
+
+.githubButton {
+  [data-mantine-color-scheme] & {
+    background-color: $github-color;
+    border-color: $github-color;
+    color: var(--mantine-color-white);
+
+    @mixin hover {
+      background-color: $github-color-hover;
+      border-color: $github-color-hover;
+    }
+  }
+}
