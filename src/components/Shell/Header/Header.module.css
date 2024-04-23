@@ -1,17 +1,14 @@
 .header {
-  background-color: var(--mantine-color-body);
-  height: $header-height;
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  padding-left: var(--mantine-spacing-md);
-  padding-right: var(--mantine-spacing-md);
   display: flex;
   align-items: center;
   justify-content: space-between;
   z-index: 101;
-  border-bottom: rem(1px) solid light-dark(var(--mantine-color-gray-2), var(--mantine-color-gray-8));
+  padding-left: var(--mantine-spacing-md);
+  padding-right: var(--mantine-spacing-md);
+  top: 0;
+  left: 0;
+  right: 0;
 
   &[data-desktop] {
     @media (max-width: 47.5em) {
