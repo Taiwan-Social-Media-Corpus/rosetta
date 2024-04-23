@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import { Route } from '@config';
 import cx from 'clsx';
-import { Box, Burger, Group, Text, RemoveScroll } from '@mantine/core';
+import { Box, Burger, Group, Text, RemoveScroll, AppShell } from '@mantine/core';
 import IconController from '@components/Icons';
 import classes from './Header.module.css';
 import HeaderControls from './Controls';
-import { ColorSchemeControl } from './Controls/Icons';
+import { ColorSchemeControl, UserControl } from './Controls/Icons';
 
 interface HeaderProps {
   navbarOpened: boolean;
@@ -17,7 +17,10 @@ function Header(props: HeaderProps) {
 
   return (
     <>
-      <header className={cx(classes.header, RemoveScroll.classNames.fullWidth)} data-desktop>
+      <AppShell.Header
+        className={cx(classes.header, RemoveScroll.classNames.fullWidth)}
+        data-desktop
+      >
         <div className={classes.logoWrapper}>
           <Group>
             <Link href={Route.Home}>
@@ -34,19 +37,16 @@ function Header(props: HeaderProps) {
             </Text>
           </Group>
         </div>
-
         <HeaderControls className={classes.controls} />
-      </header>
+      </AppShell.Header>
 
-      <header className={cx(classes.header, RemoveScroll.classNames.fullWidth)} data-mobile>
+      <AppShell.Header
+        className={cx(classes.header, RemoveScroll.classNames.fullWidth)}
+        data-mobile
+      >
         <Group justify="space-between" w="100%" wrap="nowrap">
-          <Box>
-            <Burger
-              opened={navbarOpened}
-              onClick={onNavbarToggle}
-              size="sm"
-              aria-label="Toggle navbar"
-            />
+          <Box miw={80}>
+            <Burger opened={navbarOpened} onClick={onNavbarToggle} hiddenFrom="sm" size="sm" />
           </Box>
 
           <Link href={Route.Home}>
@@ -55,9 +55,10 @@ function Header(props: HeaderProps) {
 
           <Group gap="sm">
             <ColorSchemeControl />
+            <UserControl />
           </Group>
         </Group>
-      </header>
+      </AppShell.Header>
     </>
   );
 }
