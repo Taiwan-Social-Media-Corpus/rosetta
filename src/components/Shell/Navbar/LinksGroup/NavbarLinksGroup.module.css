@@ -15,17 +15,23 @@
     color: var(--mantine-color-white);
   }
 
+  @mixin hover {
+    background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-6));
+    color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
+  }
   &[data-active] {
     background-color: var(--mantine-color-blue-light-hover);
 
+    &,
+    &:hover {
+      background-color: var(--mantine-color-blue-light-hover);
+
+      & > .icon {
+        background: transparent;
+      }
+    }
     & > .icon {
       background: transparent;
-    }
-  }
-
-  @mixin hover {
-    .external {
-      opacity: 1;
     }
   }
 }
