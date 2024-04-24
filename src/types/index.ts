@@ -24,4 +24,18 @@ export interface IconProps extends BoxProps, ElementProps<'svg', 'display' | 'op
 export type IconControllerProps =
   | ({ control: 'github' } & IconProps)
   | ({ control: 'facebook' } & IconProps)
-  | ({ control: 'lope' } & IconProps);
+  | ({ control: 'lope' } & IconProps)
+  | ({ control: 'google' } & IconProps)
+  | ({ control: 'account-circle' } & IconProps);
+
+export interface User {
+  firstName: string;
+  lastName: string;
+  email: string;
+  picture: string;
+}
+
+export interface NextErrorPageProps {
+  error: Error & { digest?: string };
+  reset: () => void;
+}

@@ -5,6 +5,7 @@ import type { Metadata, Viewport } from 'next';
 import FontsStyle from '@components/Fonts';
 import { MantineProvider, ColorSchemeScript } from '@mantine/core';
 import Shell from '@components/Shell';
+import { UserProvider } from '@contexts/user';
 
 export const metadata: Metadata = {
   title: 'Taiwan Social Media Corpus',
@@ -25,7 +26,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <FontsStyle />
       <body>
         <MantineProvider theme={theme}>
-          <Shell>{children}</Shell>
+          <UserProvider>
+            <Shell>{children}</Shell>
+          </UserProvider>
         </MantineProvider>
       </body>
     </html>

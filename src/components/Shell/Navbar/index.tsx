@@ -1,24 +1,32 @@
-import { Box, ScrollArea } from '@mantine/core';
+import { AppShell, ScrollArea } from '@mantine/core';
 import { NAVBAR_LINKS_DATA } from '@config/links';
 import classes from './Navbar.module.css';
 import NavbarLinksGroup from './LinksGroup';
+import Logout from './Logout';
 
 interface NavbarProps {
-  navbarOpened: boolean;
   onNavbarClose: () => void;
+  withLogout?: boolean;
 }
 
 function Navbar(props: NavbarProps) {
-  const { navbarOpened, onNavbarClose } = props;
+  const { onNavbarClose, withLogout = false } = props;
 
   return (
-    <Box component="nav" className={classes.navbar} mod={{ hidden: !navbarOpened }}>
-      <ScrollArea className={classes.scrollarea} type="never" offsetScrollbars={false}>
+    <AppShell.Navbar>
+      <AppShell.Section
+        grow
+        component={ScrollArea}
+        type="never"
+        offsetScrollbars={false}
+        className={classes.scrollarea}
+      >
         <div className={classes.body}>
           <NavbarLinksGroup data={NAVBAR_LINKS_DATA} onNavbarClose={onNavbarClose} />
         </div>
-      </ScrollArea>
-    </Box>
+      </AppShell.Section>
+      {withLogout && <Logout />}
+    </AppShell.Navbar>
   );
 }
 

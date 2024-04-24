@@ -1,21 +1,21 @@
 import { BoxProps, Group, Tooltip } from '@mantine/core';
 import { Href } from '@config';
-import { ColorSchemeControl, FacebookControl, GithubControl } from './Icons';
+import { User } from 'types';
+import { ColorSchemeControl, FacebookControl, GithubControl, UserControl } from './Icons';
 
 interface HeaderControlsProps extends BoxProps {
-  withGithub?: boolean;
-  withFacebook?: boolean;
-  withColorScheme?: boolean;
+  user: User | null;
 }
 
 function HeaderControls(props: HeaderControlsProps) {
-  const { withGithub = true, withFacebook = true, withColorScheme = true, ...rest } = props;
+  const { user, ...rest } = props;
   return (
     <Tooltip.Group openDelay={600} closeDelay={100}>
       <Group gap="xs" {...rest}>
-        {withFacebook && <FacebookControl link={Href.Facebook} />}
-        {withGithub && <GithubControl link={Href.Github.Organization} />}
-        {withColorScheme && <ColorSchemeControl />}
+        <FacebookControl link={Href.Facebook} />
+        <GithubControl link={Href.Github.Organization} />
+        <ColorSchemeControl />
+        <UserControl user={user} />
       </Group>
     </Tooltip.Group>
   );
