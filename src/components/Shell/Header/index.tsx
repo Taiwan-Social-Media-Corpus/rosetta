@@ -3,17 +3,19 @@ import { Route } from '@config';
 import cx from 'clsx';
 import { Box, Burger, Group, Text, RemoveScroll, AppShell } from '@mantine/core';
 import IconController from '@components/Icons';
+import { User } from 'types';
 import classes from './Header.module.css';
 import HeaderControls from './Controls';
 import { ColorSchemeControl, UserControl } from './Controls/Icons';
 
 interface HeaderProps {
+  user: User | null;
   navbarOpened: boolean;
   onNavbarToggle: () => void;
 }
 
 function Header(props: HeaderProps) {
-  const { navbarOpened, onNavbarToggle } = props;
+  const { user, navbarOpened, onNavbarToggle } = props;
 
   return (
     <>
@@ -37,7 +39,7 @@ function Header(props: HeaderProps) {
             </Text>
           </Group>
         </div>
-        <HeaderControls className={classes.controls} />
+        <HeaderControls className={classes.controls} user={user} />
       </AppShell.Header>
 
       <AppShell.Header
@@ -55,7 +57,7 @@ function Header(props: HeaderProps) {
 
           <Group gap="sm">
             <ColorSchemeControl />
-            <UserControl />
+            <UserControl user={user} />
           </Group>
         </Group>
       </AppShell.Header>
