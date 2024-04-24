@@ -2,6 +2,7 @@ import urlJoin from 'url-join';
 import { env } from './env';
 
 const url = (...args: string[]): string => urlJoin(env.siteUrl as string, ...args);
+const userAPI = (...args: string[]) => url(env.api as string, 'v1', 'user', ...args);
 const corpus = (...args: string[]) => url('corpus', ...args);
 
 const Route = {
@@ -21,4 +22,13 @@ const Href = {
   },
 } as const;
 
-export { Route, Href };
+const API = {
+  user: {
+    authUrl: userAPI('auth', 'url'),
+    sessions: userAPI('sessions'),
+    refresh: userAPI('refresh'),
+    csrf: userAPI('_ping'),
+  },
+} as const;
+
+export { Route, Href, API };
