@@ -4,6 +4,7 @@ import urlJoin from 'url-join';
 import { _request } from '@utils/request';
 import { ResponseData } from 'types/request';
 import { API } from '@config';
+import { redirect } from 'next/navigation';
 
 export async function getOAuthURL() {
   const url = urlJoin('http://nginx', API.user.authUrl);
@@ -13,7 +14,8 @@ export async function getOAuthURL() {
   });
 
   if (!data || error) {
-    return null;
+    throw new Error('Failed to get OAuth URL');
   }
-  return data.url;
+
+  return redirect(data.url);
 }
