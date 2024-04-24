@@ -1,15 +1,8 @@
 import useSWR from 'swr';
-import { _request, request } from '@utils/request';
+import { request } from '@utils/request';
 import { User } from 'types';
 import { ResponseData } from 'types/request';
 import { API } from '@config';
-
-export function getOAuthURL() {
-  return _request<{}, ResponseData & { url: string }>({
-    url: API.user.authUrl,
-    method: 'GET',
-  });
-}
 
 export function getSession() {
   return request<{}, ResponseData<User>>({
