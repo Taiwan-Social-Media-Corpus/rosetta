@@ -1,5 +1,4 @@
 import { useTransition } from 'react';
-import { useRouter } from 'next/navigation';
 import { Button, Group, Modal, Title } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import IconController from '@components/Icons';
@@ -7,8 +6,7 @@ import { getOAuthURL } from '@services/user/oauth';
 
 function LoginModal() {
   const [opened, { open, close }] = useDisclosure(false);
-  const router = useRouter();
-  const [pending, start] = useTransition();
+  const [loading, start] = useTransition();
 
   return (
     <>
@@ -37,16 +35,11 @@ function LoginModal() {
             rightSection={<></>}
             onClick={() =>
               start(async () => {
-                const url = await getOAuthURL();
-                if (url === null) {
-                  router.refresh();
-                } else {
-                  router.push(url!);
-                }
+                await getOAuthURL();
                 close();
               })
             }
-            loading={pending}
+            loading={loading}
             loaderProps={{ type: 'dots' }}
           >
             Sign in with Google
