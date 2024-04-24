@@ -11,5 +11,8 @@ export default withBundleAnalyzer({
   },
   experimental: {
     optimizePackageImports: ['@mantine/core', '@mantine/hooks'],
+    serverActions: {
+      allowedOrigins: ['localhost', 'localhost:3000'],
+    },
   },
 });
