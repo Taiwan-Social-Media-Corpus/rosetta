@@ -1,6 +1,6 @@
 import { AppShell, rem, UnstyledButton } from '@mantine/core';
 import { IconLogout } from '@tabler/icons-react';
-import { deleteSession } from '@services/user/session';
+import { deleteSession } from '@services/user/session/delete';
 import classes from './Logout.module.css';
 
 function Logout() {

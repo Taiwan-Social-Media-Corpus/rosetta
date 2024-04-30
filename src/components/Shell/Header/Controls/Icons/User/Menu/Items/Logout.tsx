@@ -1,6 +1,6 @@
 import { rem, Menu } from '@mantine/core';
 import { IconLogout } from '@tabler/icons-react';
-import { deleteSession } from '@services/user/session';
+import { deleteSession } from '@services/user/session/delete';
 
 function LogoutItem() {
   return (
