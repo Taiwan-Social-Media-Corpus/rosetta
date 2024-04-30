@@ -1,7 +1,7 @@
 'use server';
 
 import urlJoin from 'url-join';
-import { _request } from '@utils/request';
+import { _request } from '@utils/request/base';
 import { ResponseData } from 'types/request';
 import { API } from '@config';
 import { redirect } from 'next/navigation';
