@@ -1,15 +1,13 @@
 'use server';
 
-import urlJoin from 'url-join';
 import { _request } from '@utils/request/base';
 import { ResponseData } from 'types/request';
-import { API } from '@config';
+import { serverUrl, API } from '@config';
 import { redirect } from 'next/navigation';
 
 export async function getOAuthURL() {
-  const url = urlJoin('http://nginx', API.user.authUrl);
-  const [data, error] = await _request<{}, ResponseData & { url: string }>({
-    url,
+  const [data, error] = await _request<any, ResponseData & { url: string }>({
+    url: serverUrl(API.user.authUrl),
     method: 'GET',
   });
 
