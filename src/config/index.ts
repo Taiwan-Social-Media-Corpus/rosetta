@@ -2,6 +2,7 @@ import urlJoin from 'url-join';
 import { env } from './env';
 
 const url = (...args: string[]): string => urlJoin(env.siteUrl as string, ...args);
+const serverUrl = (...args: string[]): string => urlJoin(env.serverUrl as string, ...args);
 const userAPI = (...args: string[]) => url(env.api as string, 'v1', 'user', ...args);
 const corpus = (...args: string[]) => url('corpus', ...args);
 
@@ -31,4 +32,4 @@ const API = {
   },
 } as const;
 
-export { Route, Href, API };
+export { Route, Href, API, serverUrl };
