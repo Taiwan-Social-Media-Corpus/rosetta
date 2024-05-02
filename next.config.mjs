@@ -5,6 +5,9 @@ const withBundleAnalyzer = bundleAnalyzer({
 });
 
 export default withBundleAnalyzer({
+  redirects: async () => {
+    return [{ source: '/', destination: '/corpus', permanent: true }];
+  },
   reactStrictMode: false,
   eslint: {
     ignoreDuringBuilds: true,
@@ -12,7 +15,7 @@ export default withBundleAnalyzer({
   experimental: {
     optimizePackageImports: ['@mantine/core', '@mantine/hooks'],
     serverActions: {
-      allowedOrigins: ['localhost', 'localhost:3000'],
+      allowedOrigins: ['localhost:3000'],
     },
   },
 });
