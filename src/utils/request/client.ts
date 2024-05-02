@@ -70,7 +70,8 @@ export async function request<
         | readonly [Data, null]
         | readonly [null, RequestError<ErrorReturn>];
     }
-    return _request<Payload, Data, ErrorReturn>(args, callbacks);
+    headers.set(Definition.Header.csrfToken, CSRF_TOKEN);
+    return _request<Payload, Data, ErrorReturn>({ ...args, headers }, callbacks);
   }
   return result;
 }
