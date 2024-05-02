@@ -3,7 +3,7 @@
 import { Dispatch, SetStateAction, useState, useEffect } from 'react';
 import { createSafeContext } from '@utils/safe-context';
 import { User } from 'types';
-import { useSession } from '@services/user/session';
+import { getSession } from '@services/user/session/get';
 
 export interface UserContext {
   user: User | null;
@@ -16,18 +16,17 @@ export const [Provider, useUser] = createSafeContext<UserContext>(
 
 export function UserProvider(props: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
-  const { data } = useSession();
-
   useEffect(() => {
-    if (data) {
-      const [userData, error] = data;
-      if (!userData || error) {
-        setUser(null);
-        return;
+    const fetch = async () => {
+      const [data, error] = await getSession();
+      if (!data || error) {
+        return setUser(null);
       }
-      setUser(userData.data);
-    }
-  }, [data]);
+      return setUser(data);
+    };
+
+    fetch();
+  }, []);
 
   return <Provider value={{ user, setUser }}>{props.children}</Provider>;
 }
