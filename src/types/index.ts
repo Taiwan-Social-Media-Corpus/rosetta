@@ -39,3 +39,7 @@ export interface NextErrorPageProps {
   error: Error & { digest?: string };
   reset: () => void;
 }
+
+export interface Boards {
+  [key: string]: string[];
+}
