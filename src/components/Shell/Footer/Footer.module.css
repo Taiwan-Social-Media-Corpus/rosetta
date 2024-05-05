@@ -1,12 +1,12 @@
 .root {
-  --footer-height: rem(400px);
+  --footer-height: 400px;
 
   @media (max-width: $footer-breakpoint-tablet) {
-    --footer-height: rem(520px);
+    --footer-height: 520px;
   }
 
   @media (max-width: $footer-breakpoint-mobile) {
-    --footer-height: rem(380px);
+    --footer-height: 380px;
   }
 }
 
@@ -52,7 +52,7 @@
 }
 
 .logoSection {
-  max-width: rem(300px);
+  max-width: 300px;
 
   @media (max-width: $footer-breakpoint-tablet) {
     margin-bottom: var(--mantine-spacing-xl);
@@ -84,7 +84,7 @@
 }
 
 .afterFooter {
-  border-top: rem(1px) solid;
+  border-top: 1px solid;
   padding-top: var(--mantine-spacing-md);
   border-color: light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-4));
 }
