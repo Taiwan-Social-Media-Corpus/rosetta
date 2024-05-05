@@ -103,9 +103,15 @@ export function Form<TFieldValues extends FieldValues = FieldValues, TContext = 
           {Object.values(controllers).map((field) => {
             const { col, Field, ...controllerProps } = field;
             const component = <FormController {...controllerProps} />;
-            return (
+            return Field ? (
+              <Field
+                ctx={methods}
+                fieldComponent={component}
+                key={`${field.name}-${controllerProps.name}`}
+              />
+            ) : (
               <Grid.Col key={`${field.name}-${controllerProps.name}`} {...col}>
-                {Field ? <Field ctx={methods} fieldComponent={component} /> : component}
+                {component}
               </Grid.Col>
             );
           })}
