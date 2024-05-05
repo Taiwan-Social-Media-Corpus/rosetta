@@ -11,7 +11,7 @@ import {
   MultiSelectProps as MantineMultiSelectProps,
   FileInputProps as MantineFileInputProps,
   SwitchGroupProps as MantineSwitchGroupProps,
-  SwitchProps,
+  SwitchProps as MantineSwitchProps,
   GridColProps,
   StackProps,
 } from '@mantine/core';
@@ -52,8 +52,10 @@ export type RadioGroupProps = Controlled<
   Omit<MantineRadioGroupProps, 'children'> & Options<RadioProps> & { stackProps?: StackProps }
 >;
 export type SwitchGroupProps = Controlled<
-  Omit<MantineSwitchGroupProps, 'children'> & Options<SwitchProps> & { stackProps?: StackProps }
+  Omit<MantineSwitchGroupProps, 'children'> &
+    Options<MantineSwitchProps> & { stackProps?: StackProps }
 >;
+export type SwitchProps = Controlled<MantineSwitchProps>;
 
 export type ControllerProps =
   | ({ control: 'checkbox-group' } & CheckboxGroupProps)
@@ -65,6 +67,7 @@ export type ControllerProps =
   | ({ control: 'radio-group' } & RadioGroupProps)
   | ({ control: 'select' } & SelectProps)
   | ({ control: 'switch-group' } & SwitchGroupProps)
+  | ({ control: 'switch' } & SwitchProps)
   | ({ control: 'text-area' } & TextareaProps)
   | ({ control: 'text-input' } & TextInputProps);
 
