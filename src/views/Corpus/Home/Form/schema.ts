@@ -30,7 +30,7 @@ export const schema = z
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         message: `Please ${flag} cql query in request body`,
-        path: ['cqlEnable'],
+        path: ['word'],
       });
     }
   });
