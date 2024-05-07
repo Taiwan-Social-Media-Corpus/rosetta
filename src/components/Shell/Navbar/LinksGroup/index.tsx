@@ -24,7 +24,7 @@ function NavbarLinksGroup(props: NavbarLinksGroupProps) {
           href={link.link}
           onClick={onNavbarClose}
           className={classes.link}
-          mod={{ active: pathname === link.link }}
+          mod={{ active: pathname.includes(link.link) }}
         >
           <span className={classes.icon}>
             <link.icon style={{ width: rem(25), height: rem(25) }} stroke={1.5} />
