@@ -40,6 +40,8 @@ export interface NextErrorPageProps {
   reset: () => void;
 }
 
-export interface Boards {
-  [key: string]: string[];
-}
+export type PickAsOrNull<T, K extends keyof T> = Omit<T, K> & {
+  [P in K]: T[P] | null;
+};
+
+export type PartialBy<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
