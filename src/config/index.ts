@@ -1,14 +1,18 @@
 import urlJoin from 'url-join';
 import { env } from './env';
 
-const url = (...args: string[]): string => urlJoin(env.siteUrl as string, ...args);
-const serverUrl = (...args: string[]): string => urlJoin(env.serverUrl as string, ...args);
-const userAPI = (...args: string[]) => url(env.api as string, 'v1', 'user', ...args);
+const url = (...args: string[]) => urlJoin(env.siteUrl as string, ...args);
+const serverUrl = (...args: string[]) => urlJoin(env.serverUrl as string, ...args);
 const corpus = (...args: string[]) => url('corpus', ...args);
+const userAPI = (...args: string[]) => url(env.api as string, 'v1', 'user', ...args);
+const corpusAPI = (...args: string[]) => url(env.api as string, 'v1', 'corpus', ...args);
 
 const Route = {
   Home: url(),
-  Corpus: corpus(),
+  Corpus: {
+    Home: corpus(),
+    Concordance: corpus('concordance'),
+  },
   NotFound: url('404'),
 } as const;
 
@@ -29,6 +33,10 @@ const API = {
     sessions: userAPI('sessions'),
     refresh: userAPI('refresh'),
     csrf: userAPI('_ping'),
+  },
+  corpus: {
+    boards: corpusAPI('boards'),
+    concordance: corpusAPI('concordance'),
   },
 } as const;
 
