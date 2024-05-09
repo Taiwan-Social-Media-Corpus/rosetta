@@ -29,5 +29,5 @@ export const FOOTER_LINKS_DATA: FooterLinksGroups[] = [
 ] as const;
 
 export const NAVBAR_LINKS_DATA: NavbarData[] = [
-  { type: 'next', label: 'Corpus', link: Route.Corpus, icon: IconBrandDatabricks },
+  { type: 'next', label: 'Corpus', link: Route.Corpus.Home, icon: IconBrandDatabricks },
 ];
