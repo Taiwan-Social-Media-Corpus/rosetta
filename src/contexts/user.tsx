@@ -18,14 +18,19 @@ export function UserProvider(props: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   useEffect(() => {
     const fetch = async () => {
+      setUser(null);
       const [data, error] = await getSession();
-      if (!data || error) {
+      if (!active || !data || error) {
         return setUser(null);
       }
       return setUser(data);
     };
 
+    let active = true;
     fetch();
+    return () => {
+      active = false;
+    };
   }, []);
 
   return <Provider value={{ user, setUser }}>{props.children}</Provider>;
