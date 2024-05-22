@@ -1,4 +1,4 @@
-import { Boards } from 'types';
+import { Boards } from 'types/corpus';
 import type { ComboboxData } from '@mantine/core';
 
 export const mediaOptions: ComboboxData = [
