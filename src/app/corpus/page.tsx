@@ -11,7 +11,7 @@ async function CorpusPage() {
 
   return (
     <Suspense fallback={<Loading />}>
-      <Corpus boards={data} />;
+      <Corpus boards={data} />
     </Suspense>
   );
 }
