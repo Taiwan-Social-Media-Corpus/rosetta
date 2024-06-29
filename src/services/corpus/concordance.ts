@@ -1,27 +1,27 @@
-'use server';
+'use client';
 
-import { serverUrl, API } from '@config';
-import { serverRequest } from '@utils/request/server';
-import { ResponseData } from 'types/request';
-import { PickAsOrNull } from 'types';
-import { ConcordanceFormValue } from '@views/Corpus/Home/Form/schema';
+import useSWR from 'swr';
 import { ConcordanceData } from 'types/corpus';
+import { ResponseData } from 'types/request';
+import { API } from '@config';
+import { request } from '@utils/request';
 
-type Payload = PickAsOrNull<ConcordanceFormValue, 'media' | 'boards' | 'postType'> & {
-  page: number;
+export type ErrorResponse = {
+  status: 'failed';
+  msg: string | { code: string; message: string };
 };
 
-export async function getConcordance(
-  payload: Payload
-): Promise<readonly [ConcordanceData, null] | readonly [null, any]> {
-  const [data, error] = await serverRequest<Payload, ResponseData<ConcordanceData>>({
-    url: serverUrl(API.corpus.concordance),
-    method: 'POST',
-    payload,
-    headers: { 'Content-Type': 'application/json' },
-  });
-  if (!data || error) {
-    return [null, error.data];
-  }
-  return [data.data, null];
+export function getConcordance(page: number, e: string) {
+  return useSWR(
+    API.corpus.concordance,
+    async (url) =>
+      request<{}, ResponseData<ConcordanceData>, ErrorResponse>({
+        url: `${url}?e=${e}&page=${page}`,
+        method: 'GET',
+      }),
+    {
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+    }
+  );
 }
